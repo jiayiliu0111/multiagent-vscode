@@ -136,6 +136,12 @@
         "title": "Index Repository",
         "category": "Rubberduck",
         "enablement": "config.rubberduck.indexRepository.enabled"
+      },
+      {
+        "command": "rubberduck.startMultiAgentDesign",
+        "title": "Start Multi-Agent Design 🤖",
+        "category": "Rubberduck",
+        "icon": "$(group)"
       }
     ],
     "configuration": {
@@ -312,6 +318,11 @@
           "group": "navigation@6"
         },
         {
+          "command": "rubberduck.startMultiAgentDesign",
+          "when": "view == rubberduck.chat",
+          "group": "navigation@7"
+        },
+        {
           "command": "rubberduck.getStarted",
           "when": "view == rubberduck.chat",
           "group": "navigation@9"
@@ -364,6 +375,11 @@
           "command": "rubberduck.startCustomChat",
           "group": "rubberduck",
           "when": "config.rubberduck.action.startCustomChat.showInEditorContextMenu && editorHasSelection"
+        },
+        {
+          "command": "rubberduck.startMultiAgentDesign",
+          "group": "rubberduck",
+          "when": "editorHasSelection"
         }
       ]
     },

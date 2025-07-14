@@ -1,6 +1,9 @@
 {
-  "name": "rubberduck-vscode-root",
-  "version": "0.0.0",
+  "name": "multi-agent-designer",
+  "displayName": "Multi-Agent Product Designer",
+  "description": "AI-powered product design with PM, SDE, and QA agents",
+  "version": "0.0.1",
+  "publisher": "Mesh",
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",

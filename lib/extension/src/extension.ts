@@ -8,6 +8,7 @@ import { ConversationTypesProvider } from "./conversation/ConversationTypesProvi
 import { DiffEditorManager } from "./diff/DiffEditorManager";
 import { indexRepository } from "./index/indexRepository";
 import { getVSCodeLogLevel, LoggerUsingVSCodeOutput } from "./logger";
+import { MultiAgentConversation } from "./conversation/MultiAgentConversation";
 
 export const activate = async (context: vscode.ExtensionContext) => {
   const apiKeyManager = new ApiKeyManager({
@@ -158,7 +159,33 @@ export const activate = async (context: vscode.ExtensionContext) => {
         ai: ai,
         outputChannel: indexOutputChannel,
       });
-    })
+    }),
+
+    vscode.commands.registerCommand(
+      "rubberduck.startMultiAgentDesign",
+      async () => {
+        const conversationId = `conversation-${Date.now()}`;
+        const multiAgentConversation = new MultiAgentConversation({
+          id: conversationId,
+          initVariables: {},
+          ai,
+          updateChatPanel: async () => {
+            await chatPanel.update(chatModel);
+          },
+          diffEditorManager: new DiffEditorManager({
+            extensionUri: context.extensionUri,
+          }),
+        });
+
+        // Add to chat model and show
+        chatModel.addAndSelectConversation(multiAgentConversation);
+        await chatController.showChatPanel();
+        await chatPanel.update(chatModel);
+
+        // Start the collaboration
+        await multiAgentConversation.answer();
+      }
+    )
   );
 
   return Object.freeze({
