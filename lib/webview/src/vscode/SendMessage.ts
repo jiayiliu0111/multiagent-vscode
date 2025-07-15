@@ -1,5 +1,5 @@
 import { vscodeApi } from "./VsCodeApi";
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 
 export type SendMessage = (message: webviewApi.OutgoingMessage) => void;
 

@@ -32,9 +32,9 @@
     "node": ">=18",
     "vscode": "^1.72.0"
   },
-  "homepage": "https://github.com/rubberduck-ai/rubberduck-vscode",
-  "repository": "https://github.com/rubberduck-ai/rubberduck-vscode",
-  "bugs": "https://github.com/rubberduck-ai/rubberduck-vscode/issues",
+  "homepage": "https://github.com/magentim-ai/magentim-vscode",
+  "repository": "https://github.com/magentim-ai/magentim-vscode",
+  "bugs": "https://github.com/magentim-ai/magentim-vscode/issues",
   "extensionKind": [
     "workspace"
   ],
@@ -45,163 +45,110 @@
   "contributes": {
     "commands": [
       {
-        "command": "rubberduck.enterOpenAIApiKey",
-        "category": "Rubberduck",
+        "command": "magentim.enterOpenAIApiKey",
+        "category": "Magentim",
         "title": "Enter OpenAI API key"
       },
       {
-        "command": "rubberduck.clearOpenAIApiKey",
-        "category": "Rubberduck",
+        "command": "magentim.clearOpenAIApiKey",
+        "category": "Magentim",
         "title": "Clear OpenAI API key"
       },
       {
-        "command": "rubberduck.startChat",
-        "title": "Start Chat 💬",
-        "category": "Rubberduck",
-        "icon": "$(comment-discussion)"
-      },
-      {
-        "command": "rubberduck.editCode",
-        "title": "Edit Code 🖊️",
-        "category": "Rubberduck",
-        "icon": "$(edit)"
-      },
-      {
-        "command": "rubberduck.explainCode",
-        "title": "Explain Code 💬",
-        "category": "Rubberduck",
-        "icon": "$(comment-discussion)"
-      },
-      {
-        "command": "rubberduck.generateCode",
-        "title": "Generate Code 🪄",
-        "category": "Rubberduck",
-        "icon": "$(wand)"
-      },
-      {
-        "command": "rubberduck.generateUnitTest",
-        "title": "Generate Unit Test 🪄",
-        "category": "Rubberduck",
-        "icon": "$(beaker)"
-      },
-      {
-        "command": "rubberduck.diagnoseErrors",
-        "title": "Diagnose Errors 💬",
-        "category": "Rubberduck",
-        "icon": "$(search-fuzzy)"
-      },
-      {
-        "command": "rubberduck.findBugs",
-        "title": "Find Bugs 💬",
-        "category": "Rubberduck",
-        "icon": "$(bug)"
-      },
-      {
-        "command": "rubberduck.startCustomChat",
-        "title": "Start Custom Chat… 💬",
-        "category": "Rubberduck",
-        "icon": "$(comment-draft)"
-      },
-      {
-        "command": "rubberduck.touchBar.startChat",
-        "category": "Rubberduck",
-        "title": "💬"
-      },
-      {
-        "command": "rubberduck.showChatPanel",
+        "command": "magentim.showChatPanel",
         "title": "Show Chat Panel 💬",
-        "category": "Rubberduck",
+        "category": "Magentim",
         "icon": "$(comment-discussion)"
       },
       {
-        "command": "rubberduck.getStarted",
+        "command": "magentim.getStarted",
         "title": "Get Started",
-        "category": "Rubberduck",
+        "category": "Magentim",
         "icon": "$(question)"
       },
       {
-        "command": "rubberduck.reloadTemplates",
+        "command": "magentim.reloadTemplates",
         "title": "Reload Templates",
-        "category": "Rubberduck",
+        "category": "Magentim",
         "icon": "$(sync)"
       },
       {
-        "command": "rubberduck.showLogs",
+        "command": "magentim.showLogs",
         "title": "Show Logs",
-        "category": "Rubberduck",
+        "category": "Magentim",
         "icon": "$(output)"
       },
       {
-        "command": "rubberduck.indexRepository",
+        "command": "magentim.indexRepository",
         "title": "Index Repository",
-        "category": "Rubberduck",
-        "enablement": "config.rubberduck.indexRepository.enabled"
+        "category": "Magentim",
+        "enablement": "config.magentim.indexRepository.enabled"
       },
       {
-        "command": "rubberduck.startMultiAgentDesign",
+        "command": "magentim.startMultiAgentDesign",
         "title": "Start Multi-Agent Design 🤖",
-        "category": "Rubberduck",
+        "category": "Magentim",
         "icon": "$(group)"
       }
     ],
     "configuration": {
-      "title": "Rubberduck",
+      "title": "Magentim",
       "properties": {
-        "rubberduck.syntaxHighlighting.useVisualStudioCodeColors": {
+        "magentim.syntaxHighlighting.useVisualStudioCodeColors": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Use the Visual Studio Code Theme colors for syntax highlighting in the diff viewer. Might not work with all themes. Only applies to newly opened diffs.",
           "scope": "application"
         },
-        "rubberduck.indexRepository.enabled": {
+        "magentim.indexRepository.enabled": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Enable the command to index your repository and give more context to the AI model. Experimental.",
           "scope": "application"
         },
-        "rubberduck.action.editCode.showInEditorContextMenu": {
+        "magentim.action.editCode.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.action.startChat.showInEditorContextMenu": {
+        "magentim.action.startChat.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.action.explainCode.showInEditorContextMenu": {
+        "magentim.action.explainCode.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.action.findBugs.showInEditorContextMenu": {
+        "magentim.action.findBugs.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.action.generateUnitTest.showInEditorContextMenu": {
+        "magentim.action.generateUnitTest.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.action.diagnoseErrors.showInEditorContextMenu": {
+        "magentim.action.diagnoseErrors.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.action.startCustomChat.showInEditorContextMenu": {
+        "magentim.action.startCustomChat.showInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Show this action in the editor context menu, when you right-click on the code.",
           "scope": "application"
         },
-        "rubberduck.logger.level": {
+        "magentim.logger.level": {
           "type": "string",
           "default": "info",
           "enum": [
@@ -216,22 +163,22 @@
             "Only show warnings and errors",
             "Only show errors"
           ],
-          "markdownDescription": "Specify the verbosity of logs that will appear in 'Rubberduck: Show Logs'.",
+          "markdownDescription": "Specify the verbosity of logs that will appear in 'Magentim: Show Logs'.",
           "scope": "application"
         },
-        "rubberduck.openAI.surfacePromptForPlus": {
+        "magentim.openAI.surfacePromptForPlus": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Enable UI to surface the prompt text to use with OpenAI plus web chat",
           "scope": "application"
         },
-        "rubberduck.openAI.baseUrl": {
+        "magentim.openAI.baseUrl": {
           "type": "string",
           "default": "https://api.openai.com/v1/",
           "markdownDescription": "Specify the URL to the OpenAI API. If you are using a proxy, you can set it here.",
           "scope": "application"
         },
-        "rubberduck.model": {
+        "magentim.model": {
           "type": "string",
           "default": "gpt-3.5-turbo-0125",
           "enum": [
@@ -263,122 +210,23 @@
         }
       }
     },
-    "keybindings": [
-      {
-        "command": "rubberduck.startChat",
-        "when": "isMac",
-        "key": "Ctrl+Cmd+c"
-      },
-      {
-        "command": "rubberduck.startChat",
-        "when": "!isMac",
-        "key": "Ctrl+Alt+c"
-      },
-      {
-        "command": "rubberduck.editCode",
-        "when": "isMac",
-        "key": "Ctrl+Cmd+e"
-      },
-      {
-        "command": "rubberduck.editCode",
-        "when": "!isMac",
-        "key": "Ctrl+Alt+e"
-      },
-      {
-        "command": "rubberduck.generateCode",
-        "when": "isMac",
-        "key": "Ctrl+Cmd+g"
-      },
-      {
-        "command": "rubberduck.generateCode",
-        "when": "!isMac",
-        "key": "Ctrl+Alt+g"
-      }
-    ],
     "menus": {
       "view/title": [
         {
-          "command": "rubberduck.startChat",
-          "when": "view == rubberduck.chat",
+          "command": "magentim.startMultiAgentDesign",
+          "when": "view == magentim.chat",
           "group": "navigation@1"
         },
         {
-          "command": "rubberduck.editCode",
-          "when": "view == rubberduck.chat",
-          "group": "navigation@2"
-        },
-        {
-          "command": "rubberduck.generateCode",
-          "when": "view == rubberduck.chat",
-          "group": "navigation@3"
-        },
-        {
-          "command": "rubberduck.startCustomChat",
-          "when": "view == rubberduck.chat",
-          "group": "navigation@6"
-        },
-        {
-          "command": "rubberduck.startMultiAgentDesign",
-          "when": "view == rubberduck.chat",
-          "group": "navigation@7"
-        },
-        {
-          "command": "rubberduck.getStarted",
-          "when": "view == rubberduck.chat",
+          "command": "magentim.getStarted",
+          "when": "view == magentim.chat",
           "group": "navigation@9"
-        }
-      ],
-      "touchBar": [
-        {
-          "command": "rubberduck.touchBar.startChat",
-          "group": "rubberduck"
-        }
-      ],
-      "commandPalette": [
-        {
-          "command": "rubberduck.touchBar.startChat",
-          "when": "false"
         }
       ],
       "editor/context": [
         {
-          "command": "rubberduck.startChat",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.startChat.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.editCode",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.editCode.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.explainCode",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.explainCode.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.findBugs",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.findBugs.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.generateUnitTest",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.generateUnitTest.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.diagnoseErrors",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.diagnoseErrors.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.startCustomChat",
-          "group": "rubberduck",
-          "when": "config.rubberduck.action.startCustomChat.showInEditorContextMenu && editorHasSelection"
-        },
-        {
-          "command": "rubberduck.startMultiAgentDesign",
-          "group": "rubberduck",
+          "command": "magentim.startMultiAgentDesign",
+          "group": "magentim",
           "when": "editorHasSelection"
         }
       ]
@@ -386,16 +234,16 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "rubberduck",
-          "title": "Rubberduck",
+          "id": "magentim",
+          "title": "Magentim",
           "icon": "media/sidebar-icon.svg"
         }
       ]
     },
     "views": {
-      "rubberduck": [
+      "magentim": [
         {
-          "id": "rubberduck.chat",
+          "id": "magentim.chat",
           "name": "Chat",
           "type": "webview"
         }
@@ -403,14 +251,14 @@
     },
     "walkthroughs": [
       {
-        "id": "rubberduck",
-        "title": "Rubberduck",
-        "description": "Your AI Chat Assistant in Visual Studio Code",
+        "id": "magentim",
+        "title": "Magentim",
+        "description": "Your Multi-Agent Product Design Assistant in Visual Studio Code",
         "steps": [
           {
             "id": "setup",
-            "title": "Setup Rubberduck",
-            "description": "[Enter your OpenAI API key](command:rubberduck.enterOpenAIApiKey) to get started.",
+            "title": "Setup Magentim",
+            "description": "[Enter your OpenAI API key](command:magentim.enterOpenAIApiKey) to get started.",
             "media": {
               "markdown": "walkthrough/setup.md"
             }
@@ -418,7 +266,7 @@
           {
             "id": "chat",
             "title": "AI Chat",
-            "description": "Chat with Rubberduck about your code and software development topics.",
+            "description": "Chat with Magentim about your code and software development topics.",
             "media": {
               "markdown": "walkthrough/chat.md"
             }
@@ -426,7 +274,7 @@
           {
             "id": "generate-code",
             "title": "Generate Code",
-            "description": "Generate code by instructing Rubberduck.",
+            "description": "Generate code by instructing Magentim.",
             "media": {
               "markdown": "walkthrough/generate-code.md"
             }
@@ -434,7 +282,7 @@
           {
             "id": "edit-code",
             "title": "Edit Code",
-            "description": "Change the selected code by instructing Rubberduck to create an edit.",
+            "description": "Change the selected code by instructing Magentim to create an edit.",
             "media": {
               "markdown": "walkthrough/edit-code.md"
             }
@@ -449,7 +297,7 @@
           },
           {
             "id": "rubberduck-templates",
-            "title": "Rubberduck Templates",
+            "title": "Magentim Templates",
             "description": "Craft your own chat templates!",
             "media": {
               "markdown": "walkthrough/rubberduck-templates.md"
@@ -458,7 +306,7 @@
           {
             "id": "tips-and-tricks",
             "title": "Tips and Tricks",
-            "description": "How to get the most out of Rubberduck.",
+            "description": "How to get the most out of Magentim.",
             "media": {
               "markdown": "walkthrough/tips-and-tricks.md"
             }
@@ -466,7 +314,7 @@
           {
             "id": "project",
             "title": "Project",
-            "description": "Learn more about the Rubberduck open source project.",
+            "description": "Learn more about the Magentim open source project.",
             "media": {
               "markdown": "walkthrough/project.md"
             }

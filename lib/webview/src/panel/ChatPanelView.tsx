@@ -1,14 +1,14 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import React from "react";
 import { CollapsedConversationView } from "../component/CollapsedConversationView";
 import { ExpandedConversationView } from "../component/ExpandedConversationView";
 import { SendMessage } from "../vscode/SendMessage";
 
-const StartChatButton: React.FC<{
+const StartMultiAgentDesignButton: React.FC<{
   onClick: () => void;
 }> = ({ onClick }) => (
   <div className="start-chat">
-    <button onClick={onClick}>Start new chat</button>
+    <button onClick={onClick}>Start Multi-Agent Design</button>
   </div>
 );
 
@@ -18,7 +18,7 @@ export const ChatPanelView: React.FC<{
 }> = ({ panelState, sendMessage }) => {
   if (panelState == null) {
     return (
-      <StartChatButton onClick={() => sendMessage({ type: "startChat" })} />
+      <StartMultiAgentDesignButton onClick={() => sendMessage({ type: "startChat" })} />
     );
   }
 
@@ -35,7 +35,7 @@ export const ChatPanelView: React.FC<{
           Enter your OpenAI API key
         </button>
         <p>
-          Rubberduck uses the OpenAI API and requires an API key to work. You
+          Magentim uses the OpenAI API and requires an API key to work. You
           can get an API key from{" "}
           <a href="https://platform.openai.com/account/api-keys">
             platform.openai.com/account/api-keys
@@ -47,7 +47,7 @@ export const ChatPanelView: React.FC<{
 
   if (panelState.conversations.length === 0) {
     return (
-      <StartChatButton onClick={() => sendMessage({ type: "startChat" })} />
+      <StartMultiAgentDesignButton onClick={() => sendMessage({ type: "startChat" })} />
     );
   }
 

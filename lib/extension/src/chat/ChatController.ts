@@ -1,8 +1,9 @@
-import { util, webviewApi } from "@rubberduck/common";
+import { util, webviewApi } from "@magentim/common";
 import * as vscode from "vscode";
 import { AIClient } from "../ai/AIClient";
 import { Conversation } from "../conversation/Conversation";
 import { ConversationType } from "../conversation/ConversationType";
+import { MultiAgentConversation } from "../conversation/MultiAgentConversation";
 import { resolveVariables } from "../conversation/input/resolveVariables";
 import { DiffEditorManager } from "../diff/DiffEditorManager";
 import { ChatModel } from "./ChatModel";
@@ -18,6 +19,7 @@ export class ChatController {
   private readonly diffEditorManager: DiffEditorManager;
   private readonly basicChatTemplateId: string;
   private readonly generateConversationId: () => string;
+  private readonly extensionUri: vscode.Uri;
 
   constructor({
     chatPanel,
@@ -26,6 +28,7 @@ export class ChatController {
     getConversationType,
     diffEditorManager,
     basicChatTemplateId,
+    extensionUri,
   }: {
     chatPanel: ChatPanel;
     chatModel: ChatModel;
@@ -33,6 +36,7 @@ export class ChatController {
     getConversationType: (id: string) => ConversationType | undefined;
     diffEditorManager: DiffEditorManager;
     basicChatTemplateId: string;
+    extensionUri: vscode.Uri;
   }) {
     this.chatPanel = chatPanel;
     this.chatModel = chatModel;
@@ -40,6 +44,7 @@ export class ChatController {
     this.getConversationType = getConversationType;
     this.diffEditorManager = diffEditorManager;
     this.basicChatTemplateId = basicChatTemplateId;
+    this.extensionUri = extensionUri;
 
     this.generateConversationId = util.createNextId({
       prefix: "conversation-",
@@ -62,7 +67,7 @@ export class ChatController {
   }
 
   async showChatPanel() {
-    await vscode.commands.executeCommand("rubberduck.chat.focus");
+    await vscode.commands.executeCommand("magentim.chat.focus");
   }
 
   async receivePanelMessage(rawMessage: unknown) {
@@ -71,7 +76,7 @@ export class ChatController {
 
     switch (type) {
       case "enterOpenAIApiKey": {
-        await vscode.commands.executeCommand("rubberduck.enterOpenAIApiKey");
+        await vscode.commands.executeCommand("magentim.enterOpenAIApiKey");
         break;
       }
       case "clickCollapsedConversation": {
@@ -86,7 +91,7 @@ export class ChatController {
         break;
       }
       case "startChat": {
-        await this.createConversation(this.basicChatTemplateId);
+        await this.startMultiAgentDesign();
         break;
       }
       case "deleteConversation": {
@@ -124,6 +129,28 @@ export class ChatController {
         const exhaustiveCheck: never = type;
         throw new Error(`unsupported type: ${exhaustiveCheck}`);
       }
+    }
+  }
+
+  async startMultiAgentDesign() {
+    try {
+      const conversationId = this.generateConversationId();
+      const multiAgentConversation = new MultiAgentConversation({
+        id: conversationId,
+        initVariables: {},
+        ai: this.ai,
+        updateChatPanel: this.updateChatPanel.bind(this),
+        diffEditorManager: this.diffEditorManager,
+      });
+
+      // Add to chat model and show
+      await this.addAndShowConversation(multiAgentConversation);
+
+      // Start the collaboration
+      await multiAgentConversation.answer();
+    } catch (error: any) {
+      console.log(error);
+      await vscode.window.showErrorMessage(error?.message ?? error);
     }
   }
 

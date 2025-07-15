@@ -15,16 +15,16 @@ export const activate = async (context: vscode.ExtensionContext) => {
     secretStorage: context.secrets,
   });
 
-  const mainOutputChannel = vscode.window.createOutputChannel("Rubberduck");
+  const mainOutputChannel = vscode.window.createOutputChannel("Magentim");
   const indexOutputChannel =
-    vscode.window.createOutputChannel("Rubberduck Index");
+    vscode.window.createOutputChannel("Magentim Index");
 
   const vscodeLogger = new LoggerUsingVSCodeOutput({
     outputChannel: mainOutputChannel,
     level: getVSCodeLogLevel(),
   });
   vscode.workspace.onDidChangeConfiguration((event) => {
-    if (event.affectsConfiguration("rubberduck.logger.level")) {
+    if (event.affectsConfiguration("magentim.logger.level")) {
       vscodeLogger.setLevel(getVSCodeLogLevel());
     }
   });
@@ -60,6 +60,7 @@ export const activate = async (context: vscode.ExtensionContext) => {
       return conversationTypesProvider.getConversationType(id);
     },
     basicChatTemplateId: "chat-en",
+    extensionUri: context.extensionUri,
   });
 
   chatPanel.onDidReceiveMessage(
@@ -67,94 +68,39 @@ export const activate = async (context: vscode.ExtensionContext) => {
   );
 
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider("rubberduck.chat", chatPanel),
+    vscode.window.registerWebviewViewProvider("magentim.chat", chatPanel),
     vscode.commands.registerCommand(
-      "rubberduck.enterOpenAIApiKey",
+      "magentim.enterOpenAIApiKey",
       apiKeyManager.enterOpenAIApiKey.bind(apiKeyManager)
     ),
-    vscode.commands.registerCommand(
-      "rubberduck.clearOpenAIApiKey",
-      async () => {
-        await apiKeyManager.clearOpenAIApiKey();
-        vscode.window.showInformationMessage("OpenAI API key cleared.");
-      }
-    ),
+    vscode.commands.registerCommand("magentim.clearOpenAIApiKey", async () => {
+      await apiKeyManager.clearOpenAIApiKey();
+      vscode.window.showInformationMessage("OpenAI API key cleared.");
+    }),
 
     vscode.commands.registerCommand(
-      "rubberduck.startConversation",
+      "magentim.startConversation",
       (templateId) => chatController.createConversation(templateId)
     ),
 
-    vscode.commands.registerCommand("rubberduck.diagnoseErrors", () => {
-      chatController.createConversation("diagnose-errors");
-    }),
-    vscode.commands.registerCommand("rubberduck.explainCode", () => {
-      chatController.createConversation("explain-code");
-    }),
-    vscode.commands.registerCommand("rubberduck.findBugs", () => {
-      chatController.createConversation("find-bugs");
-    }),
-    vscode.commands.registerCommand("rubberduck.generateCode", () => {
-      chatController.createConversation("generate-code");
-    }),
-    vscode.commands.registerCommand("rubberduck.generateUnitTest", () => {
-      chatController.createConversation("generate-unit-test");
-    }),
-    vscode.commands.registerCommand("rubberduck.startChat", () => {
-      chatController.createConversation("chat-en");
-    }),
-    vscode.commands.registerCommand("rubberduck.editCode", () => {
-      chatController.createConversation("edit-code");
-    }),
-    vscode.commands.registerCommand("rubberduck.startCustomChat", async () => {
-      const items = conversationTypesProvider
-        .getConversationTypes()
-        .map((conversationType) => ({
-          id: conversationType.id,
-          label: conversationType.label,
-          description: (() => {
-            const tags = conversationType.tags;
-            return tags == null
-              ? conversationType.source
-              : `${conversationType.source}, ${tags.join(", ")}`;
-          })(),
-          detail: conversationType.description,
-        }));
-
-      const result = await vscode.window.showQuickPick(items, {
-        title: `Start Custom Chat…`,
-        matchOnDescription: true,
-        matchOnDetail: true,
-        placeHolder: "Select conversation type…",
-      });
-
-      if (result == undefined) {
-        return; // user cancelled
-      }
-
-      await chatController.createConversation(result.id);
-    }),
-    vscode.commands.registerCommand("rubberduck.touchBar.startChat", () => {
-      chatController.createConversation("chat-en");
-    }),
-    vscode.commands.registerCommand("rubberduck.showChatPanel", async () => {
+    vscode.commands.registerCommand("magentim.showChatPanel", async () => {
       await chatController.showChatPanel();
     }),
-    vscode.commands.registerCommand("rubberduck.getStarted", async () => {
+    vscode.commands.registerCommand("magentim.getStarted", async () => {
       await vscode.commands.executeCommand("workbench.action.openWalkthrough", {
-        category: `rubberduck.rubberduck-vscode#rubberduck`,
+        category: `magentim.magentim-vscode#magentim`,
       });
     }),
-    vscode.commands.registerCommand("rubberduck.reloadTemplates", async () => {
+    vscode.commands.registerCommand("magentim.reloadTemplates", async () => {
       await conversationTypesProvider.loadConversationTypes();
-      vscode.window.showInformationMessage("Rubberduck templates reloaded.");
+      vscode.window.showInformationMessage("Magentim templates reloaded.");
     }),
 
-    vscode.commands.registerCommand("rubberduck.showLogs", () => {
+    vscode.commands.registerCommand("magentim.showLogs", () => {
       mainOutputChannel.show(true);
     }),
 
-    vscode.commands.registerCommand("rubberduck.indexRepository", () => {
+    vscode.commands.registerCommand("magentim.indexRepository", () => {
       indexRepository({
         ai: ai,
         outputChannel: indexOutputChannel,
@@ -162,7 +108,7 @@ export const activate = async (context: vscode.ExtensionContext) => {
     }),
 
     vscode.commands.registerCommand(
-      "rubberduck.startMultiAgentDesign",
+      "magentim.startMultiAgentDesign",
       async () => {
         const conversationId = `conversation-${Date.now()}`;
         const multiAgentConversation = new MultiAgentConversation({

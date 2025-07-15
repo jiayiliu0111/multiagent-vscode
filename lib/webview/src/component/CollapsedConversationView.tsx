@@ -1,4 +1,4 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import React from "react";
 import { ConversationHeader } from "./ConversationHeader";
 

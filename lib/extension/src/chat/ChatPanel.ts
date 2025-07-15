@@ -1,4 +1,4 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import * as vscode from "vscode";
 import { ApiKeyManager } from "../ai/ApiKeyManager";
 import { WebviewContainer } from "../webview/WebviewContainer";

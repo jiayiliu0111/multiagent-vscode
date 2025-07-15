@@ -1,11 +1,11 @@
 {
-  "root": "lib/common",
+  "root": "lib/magentim-common",
   "targets": {
     "build": {
       "dependsOn": ["^build"],
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "lib/common",
+        "cwd": "lib/magentim-common",
         "command": "tsc"
       }
     }

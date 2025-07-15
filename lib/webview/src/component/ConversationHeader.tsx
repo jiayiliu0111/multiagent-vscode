@@ -1,4 +1,4 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import { on } from "events";
 import React from "react";
 

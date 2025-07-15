@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-const OPEN_AI_API_KEY_SECRET_KEY = "rubberduck.openAI.apiKey";
+const OPEN_AI_API_KEY_SECRET_KEY = "magentim.openAI.apiKey";
 
 type UpdateEvent = "clear key" | "set key";
 

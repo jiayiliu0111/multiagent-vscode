@@ -1,4 +1,4 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import * as vscode from "vscode";
 import { AIClient } from "../ai/AIClient";
 import { DiffEditorManager } from "../diff/DiffEditorManager";

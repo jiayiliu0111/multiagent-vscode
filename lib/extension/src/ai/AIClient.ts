@@ -15,7 +15,7 @@ import { ApiKeyManager } from "./ApiKeyManager";
 function getOpenAIBaseUrl(): string {
   return (
     vscode.workspace
-      .getConfiguration("rubberduck.openAI")
+      .getConfiguration("magentim.openAI")
       .get("baseUrl", "https://api.openai.com/v1/")
       // Ensure that the base URL doesn't have a trailing slash:
       .replace(/\/$/, "")
@@ -36,7 +36,7 @@ function getModel() {
       "gpt-3.5-turbo-0125",
       "llama.cpp",
     ])
-    .parse(vscode.workspace.getConfiguration("rubberduck").get("model"));
+    .parse(vscode.workspace.getConfiguration("magentim").get("model"));
 }
 
 export class AIClient {
@@ -60,7 +60,7 @@ export class AIClient {
     if (apiKey == undefined) {
       throw new Error(
         "No OpenAI API key found. " +
-          "Please enter your OpenAI API key with the 'Rubberduck: Enter OpenAI API key' command."
+          "Please enter your OpenAI API key with the 'Magentim: Enter OpenAI API key' command."
       );
     }
 

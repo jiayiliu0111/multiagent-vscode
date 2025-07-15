@@ -60,17 +60,11 @@ importers:
         specifier: '*'
         version: link:../../lib/webview
 
-  lib/common:
-    dependencies:
-      zod:
-        specifier: 3.20.2
-        version: 3.20.2
-
   lib/extension:
     dependencies:
-      '@rubberduck/common':
+      '@magentim/common':
         specifier: '*'
-        version: link:../common
+        version: link:../magentim-common
       handlebars:
         specifier: 4.7.8
         version: 4.7.8
@@ -100,11 +94,17 @@ importers:
         specifier: 1.72.0
         version: 1.72.0
 
+  lib/magentim-common:
+    dependencies:
+      zod:
+        specifier: 3.20.2
+        version: 3.20.2
+
   lib/webview:
     dependencies:
-      '@rubberduck/common':
+      '@magentim/common':
         specifier: '*'
-        version: link:../common
+        version: link:../magentim-common
       prismjs:
         specifier: 1.29.0
         version: 1.29.0

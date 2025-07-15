@@ -1,4 +1,4 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import Handlebars from "handlebars";
 import * as vscode from "vscode";
 import { AIClient } from "../ai/AIClient";

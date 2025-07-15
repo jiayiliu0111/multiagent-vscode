@@ -1,4 +1,4 @@
-import { webviewApi } from "@rubberduck/common";
+import { webviewApi } from "@magentim/common";
 import { AIClient } from "../../ai/AIClient";
 import { AgentRole } from "./AgentRole";
 
