@@ -1,4 +1,4 @@
-![Rubberduck AI Chat](https://raw.githubusercontent.com/rubberduck-ai/rubberduck-vscode/main/asset/rubberduck-header-2.gif)
+![Magentim Multi-Agent Design](https://raw.githubusercontent.com/magentim-ai/magentim-vscode/main/asset/magentim-header-2.gif)
 
 # Rubberduck: ChatGPT for Visual Studio Code
 

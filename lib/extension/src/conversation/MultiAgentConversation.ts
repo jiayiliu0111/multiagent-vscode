@@ -128,12 +128,6 @@ Think from a quality assurance perspective. Be thorough in testing and provide a
     this.totalPmReviewRounds = 0;
     this.isInForcedState = false;
 
-    // Add user request as first message
-    await this.addUserMessage({
-      content: userRequest,
-      botAction: "Starting product development workflow...",
-    });
-
     // Start with Product Manager analyzing the request and proposing design
     const productManager = this.agents[0];
     if (productManager) {
